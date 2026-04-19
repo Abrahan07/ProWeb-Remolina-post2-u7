@@ -26,7 +26,7 @@ public class ProductoApiController {
     public ResponseEntity<Producto> buscar(@PathVariable Long id) {
         return servicio.buscarPorId(id)
                 .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+                .orElseThrow(() -> new RuntimeException("Producto no encontrado: " + id));
     }
 
     // POST /api/productos → 201 Created + objeto creado
